@@ -1,0 +1,136 @@
+line chart
+*********
+function drawLineChart(category, series){
+	Highcharts.chart('container', {
+	    chart: {
+	        type: 'line',
+	        width: 500
+	    },
+	    
+	    title: {
+	        text: 'Line Chart From MySql'
+	    },
+	
+	    xAxis: {
+	        categories: category
+	    },
+	    
+	    tooltip: {
+	        formatter: function() {
+	          return '<strong>'+this.x+': </strong>'+ this.y;
+	        }
+	    },
+	
+	    series: [{
+	        data: series
+	    }]
+	});
+}
+
+***********************************************************************
+pie chart
+*********
+	Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Graphe des cours en 2020 '
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.y}</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.y} Etudiants'
+            }
+        }
+    },
+    series: series
+});
+*********************************************************************
+circle chart
+************
+	Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'World\'s largest cities per 2017'
+    },
+    subtitle: {
+        text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+    },
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: 0,
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Studentt Numbers'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: '{point.y} Student</b>'
+    },
+    series: series
+});
+******************************************************
+covid dataset
+*************
+$.ajax({
+	url: "Pie_chart",
+	success: function(result){
+		var Place = JSON.parse(result).Place;
+		var PTotal_Cases = JSON.parse(result).PTotal_Cases;
+		drawLineChart(Place, PTotal_Cases);
+	}
+});
+function drawLineChart(Place, PTotal_Cases){
+	Highcharts.chart('container', {
+	    chart: {
+	        type: 'line',
+	        width: 700
+	    },
+	    
+	    title: {
+	        text: 'Width is set to 500px'
+	    },
+	
+	    xAxis: {
+	        categories: Place
+	    },
+	    
+	    tooltip: {
+	        formatter: function() {
+	          return '<strong>'+this.x+': </strong>'+ this.y+'%';
+	        }
+	    },
+	
+	    series: [{
+	        data: PTotal_Cases
+	    }]
+	});
+}
