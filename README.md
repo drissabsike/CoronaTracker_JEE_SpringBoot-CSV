@@ -26,6 +26,10 @@ and there you go , you are done . Now you can run project in browser,
 
 ![](src/1.PNG)
 
+![](src/2.PNG)
+
+![](src/3.PNG)
+
 Bibliography
 ***********
 
